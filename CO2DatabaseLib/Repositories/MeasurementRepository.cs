@@ -1,6 +1,7 @@
-﻿using CO2StatisticRestApi.Models;
+﻿using CO2DatabaseLib.Models;
+using CO2DatabaseLib;
 
-namespace CO2StatisticRestApi.Services
+namespace CO2DatabaseLib
 {
     public class MeasurementRepository : DBConnection
     {

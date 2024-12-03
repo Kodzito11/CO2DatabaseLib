@@ -1,7 +1,6 @@
-﻿using CO2DatabaseLib.Services;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace CO2DatabaseLib.Services
+namespace CO2DatabaseLib
 {
 	public class DBConnection
 	{

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 
-namespace CO2DatabaseLib.Services
+namespace CO2DatabaseLib
 {
 	public class DbContextCO2 : DbContext
 	{

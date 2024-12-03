@@ -1,8 +1,9 @@
-﻿using CO2StatisticRestApi.Models;
+﻿using CO2DatabaseLib.Models;
+using CO2DatabaseLib;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
-namespace CO2StatisticRestApi.Services
+namespace CO2DatabaseLib
 {
     public class UserRepository : DBConnection
     {

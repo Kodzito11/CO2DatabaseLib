@@ -1,7 +1,8 @@
-﻿using CO2StatisticRestApi.Models;
+﻿using CO2DatabaseLib.Models;
+using CO2DatabaseLib;
 using Microsoft.EntityFrameworkCore;
 
-namespace CO2StatisticRestApi.Services
+namespace CO2StatisticRestApi
 {
     public class SensorUserRepository : DBConnection
     {

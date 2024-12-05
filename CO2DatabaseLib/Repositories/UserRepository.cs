@@ -40,6 +40,16 @@ namespace CO2DatabaseLib
             _dbContext.SaveChanges();
             return user;
         }
+
+        public User? DeleteUser(string email, string password)
+        {
+            User? user = Login(email, password);
+            if (user == null)
+                return null;
+            _dbContext.Users.Remove(user);
+            _dbContext.SaveChanges();
+            return user;
+        }
         private string HashPassword(string password)
         {
             // random salt to make it harder to brute force
@@ -77,7 +87,7 @@ namespace CO2DatabaseLib
 
         public bool ChangeEmail(string oldEmail, string password, string newEmail)
         {
-            var user = _dbContext.Users.FirstOrDefault(user => user.Email == oldEmail && user.UserPassword == password);
+            var user = Login(oldEmail, password);
             if (user == null)
                 return false;
             user.Email = newEmail;
@@ -87,10 +97,10 @@ namespace CO2DatabaseLib
 
         public bool ChangePassword(string email, string oldPassword, string newPassword)
         {
-            var user = _dbContext.Users.FirstOrDefault(user => user.Email == email && user.UserPassword == oldPassword);
+            var user = Login(email, oldPassword);
             if (user == null)
                 return false;
-            user.UserPassword = newPassword;
+            user.UserPassword = HashPassword(newPassword);
             _dbContext.SaveChanges();
             return true;
         }

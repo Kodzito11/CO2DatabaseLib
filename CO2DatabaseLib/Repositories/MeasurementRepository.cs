@@ -5,9 +5,9 @@ namespace CO2DatabaseLib
 {
     public class MeasurementRepository : DBConnection
     {
-        public Measurement? GetBySensorId(int id)
+        public IEnumerable<Measurement> GetBySensorId(int id)
         {
-            return _dbContext.Measurements.FirstOrDefault(x => x.Id == id);
+            return _dbContext.Measurements.Where(x => x.SensorId == id);
         }
         public IEnumerable<Measurement> GetInTimeFrame(int id, DateTime? start, DateTime? end)
         {
@@ -22,7 +22,7 @@ namespace CO2DatabaseLib
                 end = temp;
             }
 
-            return _dbContext.Measurements.Where(m => m.MeasurementTime >= start && m.MeasurementTime <= end);
+            return GetBySensorId(id).Where(m => m.MeasurementTime >= start && m.MeasurementTime <= end);
         }
 
     }

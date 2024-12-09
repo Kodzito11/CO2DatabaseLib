@@ -11,6 +11,12 @@ namespace CO2DatabaseLib
 			optionsBuilder.UseSqlServer("Data Source=mssql17.unoeuro.com;Initial Catalog=jeppejeppsson_dk_db_test;Persist Security Info=True;User ID=jeppejeppsson_dk;Password=gk3BR45pbxtGwHnard6f;TrustServerCertificate=True");
 			// connection string structure
 			_dbContext = new(optionsBuilder.Options);
+
+        }
+
+		~DBConnection()
+		{
+			_dbContext.Dispose();
 		}
 
 	}

@@ -18,5 +18,16 @@ namespace CO2StatisticRestApi
             return _dbContext.Users.Where(u => SensorUsers.Contains(u.Id));
         }
 
+        public SensorUser? SubscribeToSensor(int userId, int sensorId)
+        {
+            if (_sensorRepository.GetById(sensorId) == null || 
+                _dbContext.SensorUser.FirstOrDefault(su => su.UserId == userId && su.SensorId == sensorId) != null)
+                return null;
+            SensorUser su = new SensorUser() { SensorId=sensorId, UserId=userId };
+            _dbContext.SensorUser.Add(su);
+            _dbContext.SaveChanges();
+            return su;
+        }
+
     }
 }

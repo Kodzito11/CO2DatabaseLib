@@ -53,6 +53,9 @@ namespace CO2DatabaseLib
             User? user = Login(email, password);
             if (user == null)
                 return null;
+            // remove all SensorUser assosiated with this user
+            var sensorUsers = _dbContext.SensorUser.Where(x => x.UserId == user.Id);
+            _dbContext.RemoveRange(sensorUsers);
             _dbContext.Users.Remove(user);
             _dbContext.SaveChanges();
             return user;
